@@ -1,0 +1,136 @@
+---
+import "@/styles/globals.css";
+import Home from "../layouts/Home.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<html lang="en">
+  <Home>
+    <div class="container entry">
+      <div class="entry__meta">
+        <h1 class="name-title">Nicolás Pelizari</h1>
+        <p class="description">
+          Fourth year Software Engineering student at <span class="highlight"
+            >UFRO</span
+          >, Chile. Currently working as a RPA Developer, I love building things
+          and learning new technologies. (<span class="highlight"
+            >Rust lover</span
+          >)
+        </p>
+        <ul class="links">
+          <li>
+            <a
+              href="https://github.com/mochaccin"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="jump-animation" src="github.svg" /></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/mochaccin_"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="jump-animation" src="twitter.svg" /></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/nicolas-pelizari-60701a2a2/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img class="jump-animation" src="linkedin.svg" /></a
+            >
+          </li>
+        </ul>
+        <div class="btns-container">
+          <a
+            href="public/CV Nicolas Pelizari.pdf"
+            download="Nicolas Pelizari Resume.pdf"
+            ><Button className="btn" variant="outline">Resume</Button></a
+          >
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=mochaccindotcl@gmail.com"
+            ><Button className="btn" variant="outline">Contact</Button></a
+          >
+        </div>
+        <h6 class="progress">Building on progress...</h6>
+        <h6 class="email">mochaccindotcl@gmail.com</h6>
+      </div>
+    </div>
+  </Home>
+  <style>
+    .btn {
+      border-color: #747fe0;
+      border-width: 2px;
+    }
+
+    .btns-container {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      padding-top: 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 1000px;
+      padding-top: 100px;
+    }
+
+    .name-title {
+      font-family:
+        monaco,
+        Consolas,
+        Lucida Console,
+        monospace;
+      letter-spacing: 2px;
+      color: #747fe0;
+    }
+
+    .description {
+      font-family:
+        Camphor,
+        Open Sans,
+        Segoe UI,
+        sans-serif;
+      font-weight: 200;
+      font-size: 1.3em;
+      line-height: 40px;
+      color: #525f7f;
+    }
+
+    .highlight {
+      color: #747fe0;
+      font-weight: 600;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: row;
+      padding: 0.75rem;
+      gap: 1rem;
+    }
+
+    img {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    ul > li {
+      padding: 5px;
+      border-radius: 20px;
+    }
+
+    .progress {
+      padding-top: 30px;
+    }
+
+    .email {
+      font-size: 0.8rem;
+      color: #8d8f92;
+    }
+  </style>
+</html>

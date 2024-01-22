@@ -1,0 +1,113 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://static.vecteezy.com/system/resources/previews/023/984/900/non_2x/black-cat-hugs-a-coffee-cup-animal-food-icon-concept-free-png.png"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Mochafolio</title>
+  </head>
+  <body>
+    <header>
+      <a href="/"
+        ><img
+          class="logo-home"
+          src="https://images.assetsdelivery.com/compings_v2/sudowoodo/sudowoodo1811/sudowoodo181100004.jpg"
+          alt="Home"
+        /></a
+      >
+      <nav>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Books</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article>
+      <slot />
+    </article>
+  </body>
+</html>
+
+<script>
+  import { gsap } from "gsap";
+
+  import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+  import Lenis from "@studio-freight/lenis";
+
+  const entries = document.querySelectorAll(".entry");
+
+  entries.forEach((entry) => {
+    let entryMeta = entry.querySelector(".entry__meta");
+
+    gsap.set(entryMeta, {
+      xPercent: -100,
+      opacity: 0,
+    });
+
+    gsap.to(entryMeta, {
+      scrollTrigger: {
+        trigger: entry,
+        start: "top bottom",
+        end: "bottom 90%",
+      },
+      xPercent: 0,
+      opacity: 1,
+    });
+  });
+
+  const lenis = new Lenis();
+
+  lenis.on("scroll", ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+</script>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    max-width: 1000px;
+  }
+
+  .logo-home {
+    width: 75px;
+    height: 75px;
+  }
+
+  nav > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  li > a {
+    color: #525f7f;
+    transition: all 0.3s;
+  }
+
+  li > a:hover {
+    color: #5e72e4;
+  }
+</style>
