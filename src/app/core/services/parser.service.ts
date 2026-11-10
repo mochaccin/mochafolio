@@ -115,32 +115,27 @@ export class ParserService {
       frontmatter.title = repoName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     }
 
-    // Summary from first blockquote > or first paragraph
-    const blockquoteMatch = markdown.match(/^>\s*(.+)$/m);
-    if (blockquoteMatch) {
-      frontmatter.summary = blockquoteMatch[1].trim();
-    } else {
-      // Find first non-heading, non-empty paragraph
-      const lines = markdown.split('\n');
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('>') && !trimmed.startsWith('##')) {
-          frontmatter.summary = trimmed;
-          break;
-        }
-      }
-    }
+    frontmatter.summary = this.inferSummary(markdown, frontmatter.title);
     if (!frontmatter.summary) {
       frontmatter.summary = `Project: ${frontmatter.title}`;
     }
+    const featuredMatch = markdown.match(/<!--\s*featured\s*:\s*(true|false)\s*-->/i);
+    if (featuredMatch) {
+      frontmatter.featured = featuredMatch[1].toLowerCase() === 'true';
+    }
 
-    // Tags from ## Tags section
-    const tagsMatch = markdown.match(/^##\s*Tags\s*\n([\s\S]*?)(?:\n##|\n#|$)/im);
-    if (tagsMatch) {
-      const tagsContent = tagsMatch[1];
+    // Tags from the complete ## Tags section, preserving the author's casing.
+    const tagsHeading = markdown.match(/^##\s+Tags\s*$/im);
+    if (tagsHeading && tagsHeading.index !== undefined) {
+      const contentStart = tagsHeading.index + tagsHeading[0].length;
+      const remaining = markdown.slice(contentStart);
+      const nextHeadingIndex = remaining.search(/^##\s+/m);
+      const tagsContent = nextHeadingIndex === -1
+        ? remaining
+        : remaining.slice(0, nextHeadingIndex);
       const tags = tagsContent
         .split('\n')
-        .map(l => l.trim().replace(/^[-*]\s*/, ''))
+        .map(l => l.trim().replace(/^[-*]\s+/, ''))
         .filter(l => l.length > 0);
       if (tags.length > 0) {
         frontmatter.tags = tags;
@@ -148,6 +143,28 @@ export class ParserService {
     }
 
     return frontmatter;
+  }
+
+  private inferSummary(markdown: string, title: string): string {
+    const titleMatch = markdown.match(/^#\s+.+$/m);
+    const content = titleMatch
+      ? markdown.slice((titleMatch.index ?? 0) + titleMatch[0].length)
+      : markdown;
+    const beforeFirstSection = content.split(/^##\s+/m, 1)[0];
+
+    for (const line of beforeFirstSection.split('\n')) {
+      const trimmed = line.trim();
+      if (
+        trimmed &&
+        !trimmed.startsWith('#') &&
+        !trimmed.startsWith('<!--') &&
+        !trimmed.startsWith('>')
+      ) {
+        return trimmed;
+      }
+    }
+
+    return `Project: ${title}`;
   }
 
   private parseArray(value: string): string[] {

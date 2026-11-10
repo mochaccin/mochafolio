@@ -32,7 +32,7 @@ import { PortfolioService, Project, SummaryRendererService } from '../../core';
                     [src]="project.previewImages[0]"
                     [alt]="project.title + ' preview'"
                     loading="lazy"
-                    class="project-image w-full h-full object-cover rounded-md transition-transform duration-500"
+                    class="w-full h-full object-contain rounded-md"
                     (error)="onImageError($event)"
                   />
                 </div>

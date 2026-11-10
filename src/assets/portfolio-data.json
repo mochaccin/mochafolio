@@ -38,11 +38,15 @@
     {
       "id": "tora-backend",
       "title": "tora-backend",
-      "summary": "Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.",
+      "summary": "Auto regulation helper mobile application for neurodivergent kids ages 8 to 12. Built in collaboration with a psychology academic of the Universidad de la Frontera specialized in early age neurodivergence studies. Built with NestJS, and React Native, with a focus in friendly design, and UX at the top of the priorities, making sure it can actually be used by kids with neurodivergence.",
       "tags": [
-        "NestJS"
+        "NestJS",
+        "jwt",
+        "docker",
+        "backend",
+        "bash"
       ],
-      "featured": false,
+      "featured": true,
       "previewImages": [
         "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/1.png",
         "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/2.png",

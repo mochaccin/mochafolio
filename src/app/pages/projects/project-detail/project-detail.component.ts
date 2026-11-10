@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, signal, computed, inject, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -33,16 +33,59 @@ declare global {
       </div>
     } @else if (project(); as proj) {
       <article class="project-detail flex flex-col max-w-[624px] mx-auto mt-10 animate-entry" aria-labelledby="project-title">
-        <!-- Hero Image -->
+        <!-- Preview Carousel -->
         @if (proj.previewImages.length > 0) {
-          <div class="project-hero mb-8 relative aspect-video rounded-lg p-6 overflow-hidden bg-rp-surface animate-entry animate-entry-delay-1">
+          <div
+            class="project-hero mb-8 relative aspect-video rounded-lg p-6 overflow-hidden bg-rp-surface animate-entry animate-entry-delay-1"
+            role="region"
+            [attr.aria-label]="proj.title + ' previews'"
+            aria-roledescription="carousel"
+          >
             <img
-              [src]="proj.previewImages[0]"
-              [alt]="proj.title + ' preview'"
+              [src]="proj.previewImages[carouselIndex()]"
+              [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
               loading="eager"
-              class="project-hero-img w-full h-full object-cover rounded-md transition-transform duration-500 group-hover:scale-100"
+              class="project-hero-img w-full h-full object-contain rounded-md cursor-zoom-in"
+              role="button"
+              tabindex="0"
+              (click)="openFullscreen()"
+              (keydown.enter)="openFullscreen()"
+              (keydown.space)="openFullscreen(); $event.preventDefault()"
+              [attr.aria-label]="'View ' + proj.title + ' preview fullscreen'"
               (error)="onImageError($event)"
             />
+
+            @if (proj.previewImages.length > 1) {
+              <button
+                type="button"
+                class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+                (click)="previousPreview(proj.previewImages.length)"
+                aria-label="Previous preview"
+              >
+                <span class="material-icons text-xl" aria-hidden="true">chevron_left</span>
+              </button>
+              <button
+                type="button"
+                class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+                (click)="nextPreview(proj.previewImages.length)"
+                aria-label="Next preview"
+              >
+                <span class="material-icons text-xl" aria-hidden="true">chevron_right</span>
+              </button>
+
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2" aria-label="Preview indicators">
+                @for (image of proj.previewImages; track image; let i = $index) {
+                  <button
+                    type="button"
+                    class="w-2.5 h-2.5 rounded-full bg-rp-muted transition-colors hover:bg-rp-gold"
+                    [class.bg-rp-gold]="carouselIndex() === i"
+                    (click)="goToPreview(i)"
+                    [attr.aria-label]="'Show preview ' + (i + 1)"
+                    [attr.aria-current]="carouselIndex() === i ? 'true' : 'false'"
+                  ></button>
+                }
+              </div>
+            }
           </div>
         }
 
@@ -127,6 +170,30 @@ declare global {
           </div>
         </div>
       </article>
+
+      @if (isFullscreen()) {
+        <div
+          class="fixed inset-0 z-50 flex items-center justify-center bg-rp-base/95 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Fullscreen project preview"
+          (click)="closeFullscreenOnBackdrop($event)"
+        >
+          <img
+            [src]="proj.previewImages[carouselIndex()]"
+            [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
+            class="max-h-full max-w-full object-contain"
+          />
+          <button
+            type="button"
+            class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-rp-surface text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+            (click)="closeFullscreen()"
+            aria-label="Close fullscreen preview"
+          >
+            <span class="material-icons text-xl" aria-hidden="true">close</span>
+          </button>
+        </div>
+      }
     }
   `,
 })
@@ -141,6 +208,8 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
   readonly project = signal<Project | null>(null);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
+  readonly carouselIndex = signal(0);
+  readonly isFullscreen = signal(false);
 
   async ngOnInit(): Promise<void> {
     const id = this.route.snapshot.paramMap.get('id');
@@ -164,6 +233,7 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
       const project = await this.portfolio.getProjectById(id);
       if (project) {
         this.project.set(project);
+        this.carouselIndex.set(0);
       } else {
         this.error.set(`Project "${id}" not found`);
       }
@@ -276,6 +346,37 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
 
   detailSections(sections: Project['sections']): Project['sections'] {
     return sections.filter(section => section.id !== 'tags');
+  }
+
+  previousPreview(total: number): void {
+    this.carouselIndex.update(index => index === 0 ? total - 1 : index - 1);
+  }
+
+  nextPreview(total: number): void {
+    this.carouselIndex.update(index => (index + 1) % total);
+  }
+
+  goToPreview(index: number): void {
+    this.carouselIndex.set(index);
+  }
+
+  openFullscreen(): void {
+    this.isFullscreen.set(true);
+  }
+
+  closeFullscreen(): void {
+    this.isFullscreen.set(false);
+  }
+
+  closeFullscreenOnBackdrop(event: MouseEvent): void {
+    if (event.target === event.currentTarget) {
+      this.closeFullscreen();
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeFullscreen();
   }
 
   onImageError(event: Event): void {
