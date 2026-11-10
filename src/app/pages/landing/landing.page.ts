@@ -76,8 +76,7 @@ import { PortfolioService, Project, SummaryRendererService } from '../../core';
                     <h3 class="project-title text-lg sm:text-xl font-bold text-rp-text mb-2 group-hover:text-rp-gold transition-colors">{{ project.title }}</h3>
                     <p class="project-summary text-sm sm:text-base text-rp-subtle leading-relaxed mb-3 line-clamp-2" [innerHTML]="summaryRenderer.render(project.summary)"></p>
                   </div>
-                  <div class="project-tags-row flex items-center gap-2 pt-2" role="list" aria-label="Technologies">
-                    <span class="material-icons text-base text-rp-pine flex-shrink-0" aria-hidden="true">label_outline</span>
+                  <div class="project-tags-row flex items-start gap-2 pt-2" role="list" aria-label="Technologies">
                     <div class="tags flex flex-wrap gap-2">
                       @for (tag of project.tags; track tag; let j = $index) {
                         <span class="tag inline-flex items-center text-sm font-medium px-3 py-1 rounded-sm border whitespace-nowrap press-feedback" [class]="getTagClass(j)" role="listitem">

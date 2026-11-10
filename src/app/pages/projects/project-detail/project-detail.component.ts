@@ -122,7 +122,7 @@ declare global {
               </div>
             </div>
 
-            <div class="project-tags-row flex items-center gap-2 animate-fade animate-fade-delay-2">
+            <div class="project-tags-row flex items-start gap-2 animate-fade animate-fade-delay-2">
               <span class="material-icons text-base text-rp-gold flex-shrink-0" aria-hidden="true">label_outline</span>
               <div class="tags flex flex-wrap gap-2" role="list" aria-label="Technologies">
                 @for (tag of proj.tags; track tag; let i = $index) {
