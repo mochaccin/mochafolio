@@ -1,0 +1,27 @@
+[
+  {
+    "name": "AWS Academy Graduate - Cloud Foundations",
+    "technology": "AWS",
+    "url": "https://www.credly.com/badges/1b163b74-2fa9-4a4f-acf9-29c5ff45670a"
+  },
+  {
+    "name": "AWS Academy Graduate - Data Engineering",
+    "technology": "AWS",
+    "url": "https://www.credly.com/badges/0ca82daa-6a78-420c-8d75-4a5c7687bb99"
+  },
+  {
+    "name": "Fundamentals of Accelerated Computing with CUDA C/C++",
+    "technology": "NVIDIA",
+    "url": "https://learn.nvidia.com/certificates?id=867HnfNLSsyPkAOf2uS0Mg"
+  },
+  {
+    "name": "Claude Academy: Claude Code 101",
+    "technology": "Anthropic",
+    "url": "https://academy.claude.com/verify/c4dc43e086d4ef3664ad6b185c820d77"
+  },
+  {
+    "name": "Claude Academy: AI Fluency - Framework and Foundations",
+    "technology": "Anthropic",
+    "url": "https://academy.claude.com/verify/19bf48d733e008ddfe930379b295d087"
+  }
+]

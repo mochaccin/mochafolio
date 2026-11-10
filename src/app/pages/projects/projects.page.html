@@ -1,0 +1,187 @@
+<section class="projects-section" aria-labelledby="projects-heading">
+  <header class="section-header">
+    <h1 id="projects-heading" class="section-title">Projects</h1>
+  </header>
+
+  <p class="section-intro">
+    Selected projects from my GitHub repositories. Each project includes a deep dive with architecture diagrams and implementation details.
+  </p>
+
+  <!-- Featured Projects -->
+  @if (featuredProjects().length > 0) {
+    <section class="project-group" aria-labelledby="featured-heading">
+      <h2 id="featured-heading" class="subsection-title">Featured</h2>
+      <div class="projects-grid">
+        @for (project of featuredProjects(); track project.id) {
+          <article class="project-card card" [routerLink]="['/projects', project.id]">
+            <div class="project-carousel" role="region" aria-label="{{ project.title }} screenshots" aria-roledescription="carousel">
+              <div class="carousel-track" [style.transform]="'translateX(-' + getCarouselIndex(project.id) * 100 + '%)'">
+                @for (image of project.previewImages; track image; let i = $index) {
+                  <div class="carousel-slide">
+                    <img
+                      [src]="image"
+                      [alt]="project.title + ' screenshot ' + (i + 1)"
+                      loading="lazy"
+                      class="carousel-image"
+                      (error)="onImageError($event, project.id, i)"
+                    />
+                  </div>
+                }
+              </div>
+
+              @if (project.previewImages.length > 1) {
+                <button
+                  class="carousel-btn carousel-btn-prev"
+                  (click)="prevSlide(project.id)"
+                  aria-label="Previous screenshot"
+                  type="button"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  class="carousel-btn carousel-btn-next"
+                  (click)="nextSlide(project.id)"
+                  aria-label="Next screenshot"
+                  type="button"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+
+                <div class="carousel-indicators" aria-label="Screenshot indicators">
+                  @for (image of project.previewImages; track image; let i = $index) {
+                    <button
+                      class="carousel-indicator"
+                      [class.active]="getCarouselIndex(project.id) === i"
+                      (click)="goToSlide(project.id, i)"
+                      [attr.aria-label]="'Screenshot ' + (i + 1)"
+                      [attr.aria-current]="getCarouselIndex(project.id) === i ? 'true' : 'false'"
+                      type="button"
+                    ></button>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="project-content">
+              <div class="project-header">
+                <h3 class="project-title">{{ project.title }}</h3>
+                @if (project.featured) {
+                  <span class="tag tag-featured">Featured</span>
+                }
+              </div>
+              <p class="project-summary">{{ project.summary }}</p>
+              <div class="project-tags">
+                @for (tag of project.tags; track tag) {
+                  <span class="tag">{{ tag }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="project-action">
+              <span class="view-details">View Details</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Other Projects -->
+  @if (otherProjects().length > 0) {
+    <section class="project-group" aria-labelledby="other-heading">
+      <h2 id="other-heading" class="subsection-title">More Projects</h2>
+      <div class="projects-grid">
+        @for (project of otherProjects(); track project.id) {
+          <article class="project-card card" [routerLink]="['/projects', project.id]">
+            <div class="project-carousel" role="region" aria-label="{{ project.title }} screenshots" aria-roledescription="carousel">
+              <div class="carousel-track" [style.transform]="'translateX(-' + getCarouselIndex(project.id) * 100 + '%)'">
+                @for (image of project.previewImages; track image; let i = $index) {
+                  <div class="carousel-slide">
+                    <img
+                      [src]="image"
+                      [alt]="project.title + ' screenshot ' + (i + 1)"
+                      loading="lazy"
+                      class="carousel-image"
+                      (error)="onImageError($event, project.id, i)"
+                    />
+                  </div>
+                }
+              </div>
+
+              @if (project.previewImages.length > 1) {
+                <button
+                  class="carousel-btn carousel-btn-prev"
+                  (click)="prevSlide(project.id)"
+                  aria-label="Previous screenshot"
+                  type="button"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  class="carousel-btn carousel-btn-next"
+                  (click)="nextSlide(project.id)"
+                  aria-label="Next screenshot"
+                  type="button"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+
+                <div class="carousel-indicators" aria-label="Screenshot indicators">
+                  @for (image of project.previewImages; track image; let i = $index) {
+                    <button
+                      class="carousel-indicator"
+                      [class.active]="getCarouselIndex(project.id) === i"
+                      (click)="goToSlide(project.id, i)"
+                      [attr.aria-label]="'Screenshot ' + (i + 1)"
+                      [attr.aria-current]="getCarouselIndex(project.id) === i ? 'true' : 'false'"
+                      type="button"
+                    ></button>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-summary">{{ project.summary }}</p>
+              <div class="project-tags">
+                @for (tag of project.tags; track tag) {
+                  <span class="tag">{{ tag }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="project-action">
+              <span class="view-details">View Details</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  @if (projects().length === 0) {
+    <div class="empty-state card">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="empty-icon">
+        <path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z" />
+        <polyline points="15 3 15 9 21 9" />
+      </svg>
+      <h3>No Projects Yet</h3>
+      <p>Projects will appear here once you add repositories with <code>PORTFOLIO.md</code> files.</p>
+    </div>
+  }
+</section>

@@ -1,0 +1,61 @@
+<header class="header" role="banner">
+  <nav class="terminal-nav" aria-label="Terminal navigation">
+    <div class="prompt">
+      <span class="prompt-user">nico@mochafolio</span>
+      <span class="prompt-separator">:</span>
+      <span class="prompt-path">
+        <a routerLink="/" class="path-root" aria-label="Home">~</a>
+        <span class="path-separator" aria-hidden="true">/</span>
+        <span class="path-current" [routerLink]="currentPath()" routerLinkActive="active">{{ currentPathDisplay() }}</span>
+      </span>
+      <span class="prompt-symbol">$</span>
+      <span class="cursor-block" aria-hidden="true"></span>
+    </div>
+  </nav>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About</a>
+    <a routerLink="/projects" routerLinkActive="active">Projects</a>
+    <a routerLink="/style-guide" routerLinkActive="active">Contact</a>
+  </nav>
+</header>
+
+<main class="main-content" role="main" id="main-content">
+  <div class="container">
+    <router-outlet />
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer-grid">
+    <div class="footer-left">
+      <p class="copyright">© {{ currentYear }} mochaccin</p>
+      <p class="status">
+        <span class="status-indicator" aria-hidden="true"></span>
+        <span>All Systems Nominal</span>
+      </p>
+    </div>
+    <div class="footer-right">
+      <a href="https://github.com/mochaccin" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com/in/[PLACEHOLDER: linkedin-username]" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 11v5" />
+          <path d="M8 8v.01" />
+          <path d="M12 16v-5" />
+          <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+          <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" />
+        </svg>
+      </a>
+      <a href="mailto:[PLACEHOLDER: email@example.com]" aria-label="Email" class="social-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
+          <path d="M3 7l9 6l9 -6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>

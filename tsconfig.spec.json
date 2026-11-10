@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["jasmine", "vitest/globals"]
+  },
+  "include": ["src/**/*.d.ts", "src/**/*.spec.ts", "src/test.ts"]
+}

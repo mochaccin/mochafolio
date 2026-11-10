@@ -1,0 +1,633 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Rose Pine Pastel Theme (Tailwind-compatible utilities)
+   ============================================================ */
+
+/* Theme colors */
+:root {
+  --color-rp-base: #1e1c29;
+  --color-rp-surface: #252336;
+  --color-rp-overlay: #3d3958;
+  --color-rp-card-border: var(--color-rp-overlay); /* Subtle border like footer buttons */
+  --color-rp-muted: #6e6a86;
+  --color-rp-subtle: #a09abf;
+  --color-rp-text: #e8e6f0;
+  --color-rp-love: #e8a8c0;
+  --color-rp-gold: #f0d8a0;
+  --color-rp-rose: #e8c0c0;
+  --color-rp-pine: #8fc8d8;
+  --color-rp-foam: #a8e0d0;
+  --color-rp-iris: #c8b8e8;
+  --shadow-card-rest: 1px 8px 10px rgba(10, 8, 18, 0.16), 1px 3px 3px rgba(10, 8, 18, 0.12);
+  --shadow-card-hover: 3px 12px 14px rgba(10, 8, 18, 0.22), 2px 4px 5px rgba(10, 8, 18, 0.14);
+  --motion-color: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-rp-base: #faf8ff;
+    --color-rp-surface: #f0eef8;
+    --color-rp-overlay: #d8d4e8;
+    --color-rp-card-border: var(--color-rp-overlay); /* Subtle border like footer buttons */
+    --color-rp-muted: #7a7694;
+    --color-rp-subtle: #5a5674;
+    --color-rp-text: #1e1c29;
+    --color-rp-love: #b85a78;
+    --color-rp-gold: #b89440;
+    --color-rp-rose: #b87878;
+    --color-rp-pine: #3a8c9c;
+    --color-rp-foam: #4aa894;
+    --color-rp-iris: #7a6ac8;
+    --shadow-card-rest: 3px 6px 10px rgba(62, 54, 91, 0.12), 1px 3px 3px rgba(62, 54, 91, 0.08);
+    --shadow-card-hover: 5px 9px 14px rgba(62, 54, 91, 0.16), 2px 4px 5px rgba(62, 54, 91, 0.1);
+  }
+}
+
+/* Animations */
+@keyframes cursorFade {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes statusPing {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Entry animations - purposeful, staggered */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Smooth Scrolling & Scrollbar Handling
+   ============================================================ */
+
+/* Smooth scrolling for all browsers & hide scrollbars on window */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Page background */
+body, html {
+  background: var(--color-rp-base);
+  font-family: ui-monospace, 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+  min-height: 100vh;
+}
+
+/* Global font smoothing */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header styles */
+.terminal-nav {
+  gap: 1rem;
+}
+
+.prompt {
+  min-width: 0;
+  letter-spacing: -0.02em;
+}
+
+.prompt-path {
+  min-width: 0;
+}
+
+.path-separator {
+  line-height: 1;
+}
+
+/* Transparent header at top of page */
+header.header-transparent {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Glass morphism header when scrolled */
+header.header-glass {
+  background: rgba(30, 28, 41, 0.35) !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Light mode glass header */
+@media (prefers-color-scheme: light) {
+  header.header-glass {
+    background: rgba(250, 248, 255, 0.35) !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Main nav link styling - using pastel gold as primary accent */
+.main-nav .active {
+  border-bottom-color: var(--color-rp-gold);
+}
+
+/* Footer with glass effect */
+footer.footer {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(38, 36, 49, 0.4) !important;
+}
+
+/* Nav links - text color only on hover, no background */
+.nav-link-glass {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: transparent;
+  color: var(--color-rp-subtle);
+  transition: color var(--motion-color), text-shadow var(--motion-color);
+  text-shadow: 0 0 0 transparent;
+}
+
+.nav-link-glass:hover {
+  color: var(--color-rp-iris);
+  background: transparent;
+  text-shadow: 0 0 8px rgba(200, 184, 232, 0.3);
+}
+
+.nav-link-glass[aria-current="true"], .nav-link-glass.active {
+  color: var(--color-rp-iris);
+}
+
+/* Footer social links - standard surface card style */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-rp-surface);
+  border: 1px solid var(--color-rp-overlay);
+  transition: transform var(--motion-color),
+              color var(--motion-color),
+              background-color var(--motion-color),
+              border-color var(--motion-color),
+              box-shadow var(--motion-color);
+  color: var(--color-rp-subtle);
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: var(--color-rp-surface);
+  border-color: var(--color-rp-gold);
+  color: var(--color-rp-gold);
+  transform: translateY(-2px);
+}
+
+/* Header cursor and footer status animations are defined here so they are
+   available even when Tailwind's custom animation utilities are purged. */
+.cursor-block {
+  animation: cursorFade 1s ease-in-out infinite;
+}
+
+.status-indicator {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-rp-pine);
+  animation: statusPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Shared card elevation: quiet at rest, lifted without a harsh halo. */
+.project-card,
+.badge-card {
+  box-shadow: var(--shadow-card-rest);
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease;
+}
+
+.project-card:hover,
+.project-card:focus-visible,
+.project-card:focus-within,
+.badge-card:hover,
+.badge-card:focus-visible,
+.badge-card:focus-within {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Tag styles with pastel backgrounds and different text colors - no border color, no hover */
+.tag {
+  background: color-mix(in srgb, var(--color-rp-overlay) 80%, transparent);
+  border: 1px solid var(--color-rp-overlay);
+  color: var(--color-rp-text);
+  border-radius: 6px; /* More square corners */
+}
+
+/* Pastel tag variants - same background, different text colors, with border */
+.tag-rose {
+  color: var(--color-rp-love);
+}
+
+.tag-foam {
+  color: var(--color-rp-foam);
+}
+
+.tag-pine {
+  color: var(--color-rp-pine);
+}
+
+.tag-gold {
+  color: var(--color-rp-gold);
+}
+
+.tag-iris {
+  color: var(--color-rp-iris);
+}
+
+.tag-love {
+  color: var(--color-rp-love);
+}
+
+/* Featured tag */
+.tag-featured {
+  background: color-mix(in srgb, var(--color-rp-gold) 15%, transparent) !important;
+  color: var(--color-rp-gold) !important;
+  border-color: var(--color-rp-gold) !important;
+}
+
+/* View all link - dashed underline effect */
+.view-all-link {
+  @apply inline-flex items-center gap-1.5 text-sm font-semibold text-rp-gold no-underline transition-colors;
+}
+
+.view-all-text {
+  @apply relative;
+}
+
+.view-all-text::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-[1px] bg-current -translate-y-[1px];
+  border-bottom: 2px dashed currentColor;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* ============================================================
+   Prose / Typography Customization for Rose Pine Dark Theme
+   ============================================================ */
+
+.prose-invert {
+  --tw-prose-body: var(--color-rp-subtle);
+  --tw-prose-headings: var(--color-rp-text);
+  --tw-prose-lead: var(--color-rp-subtle);
+  --tw-prose-links: var(--color-rp-gold);
+  --tw-prose-bold: var(--color-rp-text);
+  --tw-prose-counters: var(--color-rp-muted);
+  --tw-prose-bullets: var(--color-rp-muted);
+  --tw-prose-hr: var(--color-rp-overlay);
+  --tw-prose-quotes: var(--color-rp-text);
+  --tw-prose-quote-borders: var(--color-rp-gold);
+  --tw-prose-captions: var(--color-rp-muted);
+  --tw-prose-kbd: var(--color-rp-text);
+  --tw-prose-kbd-shadows: rgba(0, 0, 0, 0.4);
+  --tw-prose-code: var(--color-rp-gold);
+  --tw-prose-pre-code: var(--color-rp-text);
+  --tw-prose-pre-bg: var(--color-rp-base);
+  --tw-prose-th-borders: var(--color-rp-overlay);
+  --tw-prose-td-borders: var(--color-rp-overlay);
+}
+
+/* Override base font size for prose - 2 levels bigger */
+.prose-invert {
+  font-size: 1.25rem !important; /* 20px base - 2 steps up */
+  line-height: 1.8 !important;
+}
+
+.prose-invert a {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.prose-invert a:hover {
+  color: var(--color-rp-foam);
+}
+
+.prose-invert code {
+  background: color-mix(in srgb, var(--color-rp-gold) 15%, transparent);
+  padding: 0.125em 0.375em;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.prose-invert pre {
+  background: var(--color-rp-base);
+  border: 1px solid var(--color-rp-overlay);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.prose-invert pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em; /* Same size as normal text */
+  line-height: 1.8;
+}
+
+/* Reduce vertical spacing between paragraphs in prose */
+.prose-invert p {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+.prose-invert blockquote {
+  border-left-color: var(--color-rp-gold);
+  background: color-mix(in srgb, var(--color-rp-gold) 5%, transparent);
+  padding: 1rem 1.5rem;
+  border-radius: 0 10px 10px 0;
+}
+
+.prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4 {
+  color: var(--color-rp-text);
+}
+
+.prose-invert strong {
+  color: var(--color-rp-text);
+}
+
+.prose-invert hr {
+  border-color: var(--color-rp-overlay);
+}
+
+.prose-invert ul > li::marker,
+.prose-invert ol > li::marker {
+  color: var(--color-rp-gold);
+}
+
+.prose-invert table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.prose-invert th,
+.prose-invert td {
+  border: 1px solid var(--color-rp-overlay);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose-invert th {
+  background: var(--color-rp-surface);
+  font-weight: 600;
+}
+
+.prose-invert tr:nth-child(even) td {
+  background: var(--color-rp-surface);
+}
+
+/* Mermaid diagram container */
+.mermaid {
+  text-align: center;
+  overflow-x: auto;
+}
+
+/* ============================================================
+   Animation Utilities - Purposeful, Staggered Entries
+   ============================================================ */
+
+/* Keep color changes visible long enough to read as intentional motion. */
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 280ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.transition-all {
+  transition-duration: 280ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Base entry animation - fast, confident arrival */
+.animate-entry {
+  animation: fadeInUp 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Staggered delays for lists/grids */
+.animate-entry-delay-1 { animation-delay: 80ms; }
+.animate-entry-delay-2 { animation-delay: 160ms; }
+.animate-entry-delay-3 { animation-delay: 240ms; }
+.animate-entry-delay-4 { animation-delay: 320ms; }
+.animate-entry-delay-5 { animation-delay: 400ms; }
+.animate-entry-delay-6 { animation-delay: 480ms; }
+
+/* Fade only (for elements that shouldn't move) */
+.animate-fade {
+  animation: fadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-delay-1 { animation-delay: 100ms; }
+.animate-fade-delay-2 { animation-delay: 200ms; }
+
+/* Slide in from left (for side elements) */
+.animate-slide-right {
+  animation: slideInRight 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Scale in (for cards/modals) */
+.animate-scale {
+  animation: scaleIn 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Hover transitions - consistent timing */
+.hover-lift {
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+.project-card .project-image {
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-image,
+.project-card:focus-within .project-image {
+  transform: scale(1.03);
+}
+
+/* Button/link press feedback */
+.press-feedback {
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+              color var(--motion-color),
+              background-color var(--motion-color),
+              border-color var(--motion-color),
+              box-shadow var(--motion-color);
+}
+
+.press-feedback:active {
+  transform: scale(0.98);
+}
+
+/* Focus ring animation */
+.focus-ring {
+  transition: box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-rp-gold);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-entry,
+  .animate-fade,
+  .animate-slide-right,
+  .animate-scale {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .project-card,
+  .badge-card {
+    box-shadow: none;
+  }
+
+  .project-card:hover,
+  .project-card:focus-visible,
+  .project-card:focus-within,
+  .badge-card:hover,
+  .badge-card:focus-visible,
+  .badge-card:focus-within {
+    box-shadow: none;
+  }
+
+  .press-feedback:active {
+    transform: none;
+  }
+
+  .project-card:hover .project-image,
+  .project-card:focus-within .project-image {
+    transform: none;
+  }
+
+  .cursor-block,
+  .status-indicator,
+  .status-indicator::after {
+    animation: none !important;
+  }
+}
