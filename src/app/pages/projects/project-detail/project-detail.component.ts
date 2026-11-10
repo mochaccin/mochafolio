@@ -96,7 +96,7 @@ declare global {
 
           <!-- Summary -->
           @if (proj.summary) {
-            <p class="project-summary text-xl sm:text-2xl text-rp-subtle leading-relaxed max-w-[75ch] border-l-2 border-rp-gold pl-4 mb-10 animate-entry animate-entry-delay-3">
+            <p class="project-summary prose prose-invert sm:text-2xl text-rp-subtle leading-relaxed max-w-[75ch] border-l-2 border-rp-gold pl-4 mb-10 animate-entry animate-entry-delay-3">
               <span [innerHTML]="summaryRenderer.render(proj.summary)"></span>
             </p>
           }

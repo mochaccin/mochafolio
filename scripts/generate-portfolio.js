@@ -240,7 +240,7 @@ async function main() {
               return na - nb;
             });
           if (localFiles.length > 0) {
-            previewImages = localFiles.map(f => `/preview/${f}`);
+            previewImages = localFiles.map(f => `preview/${f}`);
           }
         }
       }

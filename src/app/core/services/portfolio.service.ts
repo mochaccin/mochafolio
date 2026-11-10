@@ -12,7 +12,7 @@ export class PortfolioService {
     if (this.projectsCache) return this.projectsCache;
 
     try {
-      const data = await firstValueFrom(this.http.get<{ projects: Project[] }>('/assets/portfolio-data.json'));
+      const data = await firstValueFrom(this.http.get<{ projects: Project[] }>('assets/portfolio-data.json'));
       this.projectsCache = data.projects ?? [];
       return this.projectsCache;
     } catch (error) {
@@ -34,7 +34,7 @@ export class PortfolioService {
 
   async loadBadges(): Promise<Array<{name: string; technology: string; url: string; icon?: string}>> {
     try {
-      return await firstValueFrom(this.http.get<Array<{name: string; technology: string; url: string; icon?: string}>>('/badges.json'));
+      return await firstValueFrom(this.http.get<Array<{name: string; technology: string; url: string; icon?: string}>>('badges.json'));
     } catch (error) {
       console.error('Failed to load badges:', error);
       return [];
