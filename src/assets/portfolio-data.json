@@ -11,10 +11,10 @@
         "web-development"
       ],
       "featured": true,
-      "lastCommitDate": "2026-11-10T02:37:05Z",
       "previewImages": [
         "preview/1.svg"
       ],
+      "lastCommitDate": "2026-11-10T03:55:09Z",
       "githubUrl": "https://github.com/mochaccin/mochafolio",
       "sections": [
         {
@@ -26,9 +26,14 @@
           "id": "how-it-works",
           "title": "How It Works",
           "content": "Updating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information."
+        },
+        {
+          "id": "comments",
+          "title": "Comments",
+          "content": "<!-- featured:true -->"
         }
       ],
-      "rawMarkdown": "# Mochafolio\r\n\r\n> My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\r\n\r\n## Tags\r\n\r\n- angular\r\n- tailwindcss\r\n- portfolio\r\n- web-development\r\n\r\n## Problem\r\n\r\n## Solution\r\n\r\n## How it works\r\n\r\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\r\n\r\n## Comments"
+      "rawMarkdown": "---\ntitle: Mochafolio\nsummary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\ntags: [angular, tailwindcss, portfolio, web-development]\nfeatured: true\n---\n\n# Mochafolio\n\nMy up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\n\n## Tags\n\n- angular\n- tailwindcss\n- portfolio\n- web-development\n\n## Problem\n\n## Solution\n\n## How it works\n\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\n\n## Comments\n\n<!-- featured:true -->"
     },
     {
       "id": "money-minder-back",
@@ -36,14 +41,14 @@
       "summary": "Project: Money Minder Back",
       "tags": [],
       "featured": false,
-      "lastCommitDate": "2026-11-07T18:22:23Z",
       "previewImages": [
         "preview/1.svg"
       ],
+      "lastCommitDate": "2026-11-07T18:22:23Z",
       "githubUrl": "https://github.com/mochaccin/money-minder-back",
       "sections": [],
       "rawMarkdown": "## Problem and description of the solution\n\n## General architecture and technologies\n\n## How it works\n\n## How to run it\n"
     }
   ],
-  "generatedAt": "2026-11-10T01:54:35.992Z"
+  "generatedAt": "2026-11-10T03:55:47.666Z"
 }
