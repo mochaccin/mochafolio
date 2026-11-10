@@ -14,7 +14,7 @@
       "previewImages": [
         "https://raw.githubusercontent.com/mochaccin/mochafolio/main/preview/1.svg"
       ],
-      "lastCommitDate": "2026-11-10T06:34:39Z",
+      "lastCommitDate": "2026-11-10T06:39:18Z",
       "githubUrl": "https://github.com/mochaccin/mochafolio",
       "sections": [
         {
@@ -181,5 +181,5 @@
       "rawMarkdown": "# money-minder-back\n\nSimple finance and spending tracker built on React Native, Go std library and MongoDB\n\n## Tags\n\n- React Native\n- jwt\n- go\n- backend\n- MongoDB\n- finance\n\n## Problem\n\nNeeded a small tracker to balance my monthly expenses and visualize how I was spending my money.\n\n## Solution\n\nSimple mobile finance and spending tracker, built with Go since I wanted to try a new programming language, and I might say it was quite a pleasant journey.\n\n\n## How it works\n\nSimple React Native app that calls to a Go std library REST API, with JWT authentication and MongoDB to serve and store the app information.\n\n## Comments\n\n> Very pleasant experience to try a new programming language and made me fall in love with Go. Also got to skip a university course since I delivered the finished project at the start of the course.\n\n<!-- featured:false -->\n"
     }
   ],
-  "generatedAt": "2026-11-10T06:35:06.918Z"
+  "generatedAt": "2026-11-10T06:39:50.872Z"
 }
