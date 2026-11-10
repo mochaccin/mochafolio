@@ -13,7 +13,9 @@ export class PortfolioService {
 
     try {
       const data = await firstValueFrom(this.http.get<{ projects: Project[] }>('assets/portfolio-data.json'));
-      this.projectsCache = data.projects ?? [];
+      this.projectsCache = Array.from(
+        new Map((data.projects ?? []).map(project => [project.id, project])).values()
+      );
       return this.projectsCache;
     } catch (error) {
       console.error('Failed to load portfolio data:', error);

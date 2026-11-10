@@ -305,7 +305,9 @@ async function main() {
     }
   }
 
-  projects.sort((a, b) => {
+  const uniqueProjects = Array.from(new Map(projects.map(project => [project.id, project])).values());
+
+  uniqueProjects.sort((a, b) => {
     if (a.id === 'mochafolio') return 1;
     if (b.id === 'mochafolio') return -1;
     return 0;
@@ -318,8 +320,8 @@ async function main() {
   }
 
   // Write output
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify({ projects, generatedAt: new Date().toISOString() }, null, 2));
-  console.log(`\nGenerated ${OUTPUT_PATH} with ${projects.length} projects`);
+  fs.writeFileSync(OUTPUT_PATH, JSON.stringify({ projects: uniqueProjects, generatedAt: new Date().toISOString() }, null, 2));
+  console.log(`\nGenerated ${OUTPUT_PATH} with ${uniqueProjects.length} projects`);
 }
 
 main().catch(e => {
