@@ -377,22 +377,14 @@ footer.footer {
   background: color-mix(in srgb, var(--color-rp-gold) 0%, transparent);
 }
 
-/* View all link - dashed underline effect */
+/* View all link */
 .view-all-link {
   @apply inline-flex items-center gap-1.5 text-sm font-semibold text-rp-gold no-underline transition-colors;
+  text-decoration: none !important;
 }
 
 .view-all-text {
-  @apply relative;
-}
-
-.view-all-text::after {
-  content: '';
-  @apply absolute bottom-0 left-0 w-full -translate-y-[1px];
-  border-bottom: 2px dashed currentColor;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  text-decoration: none;
 }
 
 /* ============================================================
@@ -618,6 +610,232 @@ footer.footer {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* Phone layout: keep the terminal shell legible without making visitors
+   hunt for content or scroll sideways. */
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .terminal-nav {
+    gap: 0.5rem;
+    padding-inline: max(0.75rem, env(safe-area-inset-left)) max(0.75rem, env(safe-area-inset-right)) !important;
+  }
+
+  .prompt {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.875rem !important;
+    overflow: hidden;
+  }
+
+  .prompt-user {
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .prompt-path {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .path-current {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .main-nav {
+    flex: 0 0 auto;
+  }
+
+  .main-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 0.625rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  .main-content {
+    padding: 1.5rem 0.75rem 3rem !important;
+  }
+
+  .main-content > .container {
+    padding-inline: 0.25rem !important;
+  }
+
+  .landing-page,
+  .projects-section {
+    padding-inline: 0 !important;
+  }
+
+  .welcome-section,
+  .projects-section,
+  .badges-section {
+    max-width: none !important;
+  }
+
+  .welcome-section {
+    margin-top: 0.75rem !important;
+    gap: 1.25rem !important;
+  }
+
+  .welcome-section > div:first-child {
+    gap: 0.35rem !important;
+    align-items: baseline;
+  }
+
+  .welcome-title,
+  .welcome-name {
+    font-size: clamp(2rem, 10.5vw, 3rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .welcome-description {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .contact-links {
+    gap: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .contact-link,
+  .view-all-link {
+    min-height: 44px;
+    padding-inline: 0.5rem;
+  }
+
+  .section-header {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center !important;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .section-header .section-title {
+    min-width: 0;
+  }
+
+  .section-header .view-all-link {
+    justify-self: end;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .projects-grid,
+  .badges-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .project-image-wrapper {
+    padding: 0.75rem !important;
+  }
+
+  .project-content {
+    min-height: 0 !important;
+    padding: 1rem !important;
+  }
+
+  .project-tags-row {
+    padding-top: 0.5rem !important;
+  }
+
+  .tag {
+    min-height: 32px;
+    align-items: center;
+  }
+
+  .badge-card {
+    min-height: 72px;
+    padding: 0.875rem 1rem !important;
+  }
+
+  .project-detail {
+    max-width: none !important;
+    margin-top: 0.75rem !important;
+  }
+
+  .project-hero {
+    margin-bottom: 1.5rem !important;
+    padding: 0.75rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .project-main {
+    min-width: 0;
+  }
+
+  .project-header {
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .project-title {
+    font-size: clamp(1.75rem, 9vw, 2.5rem) !important;
+    overflow-wrap: anywhere;
+  }
+
+  .project-meta,
+  .project-date {
+    gap: 0.625rem !important;
+  }
+
+  .project-link {
+    min-height: 44px;
+  }
+
+  .prose-invert {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .prose-invert pre {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .prose-invert table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .footer {
+    margin-top: 3rem !important;
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-header {
+    grid-template-columns: 1fr;
+    align-items: start !important;
+  }
+
+  .section-header .view-all-link {
+    justify-self: start;
   }
 
   .hover-lift:hover {
