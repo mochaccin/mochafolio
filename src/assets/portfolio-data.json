@@ -1,36 +1,6 @@
 {
   "projects": [
     {
-      "id": "mochafolio",
-      "title": "mochafolio",
-      "summary": "My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.",
-      "tags": [
-        "angular",
-        "tailwindcss",
-        "portfolio",
-        "web-development"
-      ],
-      "featured": false,
-      "previewImages": [
-        "https://raw.githubusercontent.com/mochaccin/mochafolio/main/preview/1.svg"
-      ],
-      "lastCommitDate": "2026-11-10T06:39:18Z",
-      "githubUrl": "https://github.com/mochaccin/mochafolio",
-      "sections": [
-        {
-          "id": "tags",
-          "title": "Tags",
-          "content": "- angular\n- tailwindcss\n- portfolio\n- web-development"
-        },
-        {
-          "id": "how-it-works",
-          "title": "How It Works",
-          "content": "Updating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information."
-        }
-      ],
-      "rawMarkdown": "---\ntitle: Mochafolio\nsummary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\ntags: [angular, tailwindcss, portfolio, web-development]\nfeatured: false\n---\n\n# Mochafolio\n\nMy up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\n\n## Tags\n\n- angular\n- tailwindcss\n- portfolio\n- web-development\n\n## Problem\n\n## Solution\n\n## How it works\n\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\n\n## Comments\n\n<!-- featured:false -->"
-    },
-    {
       "id": "tora-backend",
       "title": "tora-backend",
       "summary": "Auto regulation helper mobile application for neurodivergent kids ages 8 to 12. Built in collaboration with a psychology academic of the Universidad de la Frontera specialized in early age neurodivergence studies. Built with NestJS, and React Native, with a focus in friendly design, and UX at the top of the priorities, making sure it can actually be used by kids with neurodivergence.",
@@ -76,7 +46,7 @@
         {
           "id": "comments",
           "title": "Comments",
-          "content": "> Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.\n\n\n<!-- featured:true -->"
+          "content": "> Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system."
         }
       ],
       "rawMarkdown": "# tora-backend\n\nAuto regulation helper mobile application for neurodivergent kids ages 8 to 12. Built in collaboration with a psychology academic of the Universidad de la Frontera specialized in early age neurodivergence studies. Built with NestJS, and React Native, with a focus in friendly design, and UX at the top of the priorities, making sure it can actually be used by kids with neurodivergence.  \n\n## Tags\n\n- NestJS\n- jwt\n- docker\n- backend\n- bash\n- React Native\n- mobile\n\n## Problem\n\nCurrently there's a big lack for self-regulation tools for kids with neurodivergence, and the ones that are in the market are very primitive, or do not tackle the needs of the kids and their parents.\n\n## Solution\n\nA self-regulation mobile app, with parental control and tracking, and with UX at the top of the priorities, building in collaboration with experts in the topic, and interviewing actual parents of neurodivergence kids.\n\n\n## How it works\n\nReact Native mobile App that works in pair with a NestJS REST API, the main focus of the app is making self-regulation easy and accessible for the kids without boring them into not using the app, for that we implemented a point system for completing tasks and using the app, with a customizable mascot that the kids can customize to their liking, and a shop system. We use task lists to help the kids navigate to their day, asking for feedback on how they are feeling throughout the day, and giving this feedback to the parents. Implemented different types of self-regulation tools, like respiration exercises, timers, etc. Included a 4-step panic button, in case of extreme stress, that alerts not only the parent but also the tutor of the kid. \n\n## Comments\n\n> Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.\n\n\n<!-- featured:true -->\n"
@@ -123,7 +93,7 @@
         {
           "id": "comments",
           "title": "Comments",
-          "content": "> It was such a good learning experience, not only I got to try out Svelte, I also learned to integrate different type of graphs and customize their CSS to fit the aesthetic of the website.\n\n<!-- featured:true -->"
+          "content": "> It was such a good learning experience, not only I got to try out Svelte, I also learned to integrate different type of graphs and customize their CSS to fit the aesthetic of the website."
         }
       ],
       "rawMarkdown": "# dashview-back\n\nA CSGO professional teams and players performance tracker, made for analysis by coaches, built on Spring Boot and Svelte.\n\n## Tags\n\n- Spring Boot\n- backend\n- Svelte\n- web-development\n- MongoDB\n- chart.js\n\n## Problem\n\nLack of a platform that facilitates the visualization of performance of a team or players based on their past matches and the current season through graphs and charts.\n\n## Solution\n\nA dashboard style platform that displays all sorts of performance stats for players and teams, from kd/a, headshot %, % of clutches, etc.\n\n## How it works\n\nIt's a simple dashboard for coaches, making it easy to see the performance of other teams and players. Website made with Svelte which communicates with a Spring Boot REST API and a MongoDB database that serves the information to the website.\n\n## Comments\n\n> It was such a good learning experience, not only I got to try out Svelte, I also learned to integrate different type of graphs and customize their CSS to fit the aesthetic of the website.\n\n<!-- featured:true -->\n"
@@ -170,7 +140,7 @@
         {
           "id": "comments",
           "title": "Comments",
-          "content": "> Very pleasant experience to try a new programming language and made me fall in love with Go. Also got to skip a university course since I delivered the finished project at the start of the course.\n\n<!-- featured:false -->"
+          "content": "> Very pleasant experience to try a new programming language and made me fall in love with Go. Also got to skip a university course since I delivered the finished project at the start of the course."
         }
       ],
       "rawMarkdown": "# money-minder-back\n\nSimple finance and spending tracker built on React Native, Go std library and MongoDB\n\n## Tags\n\n- React Native\n- jwt\n- go\n- backend\n- MongoDB\n- finance\n\n## Problem\n\nNeeded a small tracker to balance my monthly expenses and visualize how I was spending my money.\n\n## Solution\n\nSimple mobile finance and spending tracker, built with Go since I wanted to try a new programming language, and I might say it was quite a pleasant journey.\n\n\n## How it works\n\nSimple React Native app that calls to a Go std library REST API, with JWT authentication and MongoDB to serve and store the app information.\n\n## Comments\n\n> Very pleasant experience to try a new programming language and made me fall in love with Go. Also got to skip a university course since I delivered the finished project at the start of the course.\n\n<!-- featured:false -->\n"
@@ -189,7 +159,7 @@
       "previewImages": [
         "https://raw.githubusercontent.com/mochaccin/mochafolio/main/preview/1.svg"
       ],
-      "lastCommitDate": "2026-11-10T06:42:32Z",
+      "lastCommitDate": "2026-11-10T06:52:52Z",
       "githubUrl": "https://github.com/mochaccin/mochafolio",
       "sections": [
         {
@@ -201,15 +171,10 @@
           "id": "how-it-works",
           "title": "How It Works",
           "content": "Updating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information."
-        },
-        {
-          "id": "comments",
-          "title": "Comments",
-          "content": "<!-- featured:false -->"
         }
       ],
       "rawMarkdown": "---\ntitle: Mochafolio\nsummary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\ntags: [angular, tailwindcss, portfolio, web-development]\nfeatured: false\n---\n\n# Mochafolio\n\nMy up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\n\n## Tags\n\n- angular\n- tailwindcss\n- portfolio\n- web-development\n\n## Problem\n\n## Solution\n\n## How it works\n\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\n\n## Comments\n\n<!-- featured:false -->"
     }
   ],
-  "generatedAt": "2026-11-10T06:43:03.731Z"
+  "generatedAt": "2026-11-10T06:53:26.242Z"
 }
