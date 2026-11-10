@@ -1,3 +1,10 @@
+---
+title: Mochafolio
+summary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.
+tags: [angular, tailwindcss, portfolio, web-development]
+featured: true
+---
+
 # Mochafolio
 
 My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.
