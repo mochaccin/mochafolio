@@ -6,10 +6,8 @@ on:
   workflow_dispatch:     # Manual trigger
   push:
     branches: [main]
-    paths:
-      - 'scripts/**'
-      - 'package.json'
-      - 'package-lock.json'
+    paths-ignore:
+      - 'src/assets/portfolio-data.json'
 
 permissions:
   contents: write

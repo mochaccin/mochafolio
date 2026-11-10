@@ -61,7 +61,7 @@ import { PortfolioService, Project, SummaryRendererService } from '../../core';
         <div class="empty-state flex flex-col items-center justify-center text-center p-12 sm:p-20 min-h-[300px] animate-fade animate-fade-delay-1">
           <span class="material-icons empty-icon text-rp-muted mb-4 text-5xl" aria-hidden="true">folder_open</span>
           <h3 class="text-rp-text mb-2">No Projects Yet</h3>
-          <p class="text-rp-subtle text-base max-w-[40ch]">Projects will appear here once you add repositories with <code class="bg-rp-surface text-rp-iris px-2 py-0.5 rounded-sm text-sm">PORTFOLIO.md</code> files.</p>
+          <p class="text-rp-subtle text-base max-w-[40ch]">No projects available for display.</p>
         </div>
       }
     </section>
