@@ -201,6 +201,15 @@ async function main() {
 
       const markdown = fileRes.encoding === 'base64' ? Buffer.from(fileRes.content, 'base64').toString('utf-8') : fileRes.content;
 
+      let lastCommitDate = repo.updated_at;
+      try {
+        const commits = await request(`${BASE_URL}/repos/${OWNER}/${repo.name}/commits?per_page=1`);
+        const latestCommit = Array.isArray(commits) ? commits[0]?.commit : null;
+        lastCommitDate = latestCommit?.author?.date || latestCommit?.committer?.date || lastCommitDate;
+      } catch (error) {
+        console.warn(`  Could not fetch last commit date; using repository update date`);
+      }
+
       // Get preview images from GitHub
       let previewImages = [];
       try {
@@ -257,12 +266,13 @@ async function main() {
 
       const project = {
         id: repo.name,
-        title: frontmatter.title,
+        title: repo.name,
         summary: frontmatter.summary,
         tags: frontmatter.tags,
         featured: frontmatter.featured ?? false,
         previewImages,
         date: frontmatter.date,
+        lastCommitDate,
         githubUrl: frontmatter.githubUrl ?? `https://github.com/${OWNER}/${repo.name}`,
         demoUrl: frontmatter.demoUrl,
         sections,

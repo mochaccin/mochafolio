@@ -355,6 +355,27 @@ footer.footer {
   border-color: var(--color-rp-gold) !important;
 }
 
+.project-summary a,
+.project-summary-detail a,
+.prose-invert a {
+  color: var(--color-rp-gold);
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
+  transition: color var(--motion-color), text-decoration-color var(--motion-color);
+}
+
+.project-summary a:hover,
+.project-summary-detail a:hover,
+.prose-invert a:hover {
+  color: var(--color-rp-foam);
+}
+
+.summary-highlight {
+  color: var(--color-rp-gold);
+  background: color-mix(in srgb, var(--color-rp-gold) 0%, transparent);
+}
+
 /* View all link - dashed underline effect */
 .view-all-link {
   @apply inline-flex items-center gap-1.5 text-sm font-semibold text-rp-gold no-underline transition-colors;
@@ -366,7 +387,7 @@ footer.footer {
 
 .view-all-text::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-full h-[1px] bg-current -translate-y-[1px];
+  @apply absolute bottom-0 left-0 w-full -translate-y-[1px];
   border-bottom: 2px dashed currentColor;
   border-top: none;
   border-left: none;
@@ -407,8 +428,8 @@ footer.footer {
 .prose-invert a {
   text-decoration: underline;
   text-decoration-style: dashed;
-  text-underline-offset: 2px;
-  transition: color 0.2s ease;
+  text-underline-offset: 3px;
+  transition: color var(--motion-color), text-decoration-color var(--motion-color);
 }
 
 .prose-invert a:hover {

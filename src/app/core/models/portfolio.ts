@@ -4,6 +4,7 @@ export interface PortfolioFrontmatter {
   tags: string[];
   featured?: boolean;
   date?: string;
+  lastCommitDate?: string;
   githubUrl?: string;
   demoUrl?: string;
   previewImages?: string[];
@@ -23,6 +24,7 @@ export interface Project {
   featured: boolean;
   previewImages: string[];
   date?: string;
+  lastCommitDate?: string;
   githubUrl?: string;
   demoUrl?: string;
   sections: PortfolioSection[];

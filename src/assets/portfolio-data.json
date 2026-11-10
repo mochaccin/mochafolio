@@ -2,12 +2,16 @@
   "projects": [
     {
       "id": "mochafolio",
-      "title": "Mochafolio",
+      "title": "mochafolio",
       "summary": "My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.",
       "tags": [
-        "angular"
+        "angular",
+        "tailwindcss",
+        "portfolio",
+        "web-development"
       ],
-      "featured": false,
+      "featured": true,
+      "lastCommitDate": "2026-11-10T02:37:05Z",
       "previewImages": [
         "/preview/1.svg"
       ],
@@ -16,7 +20,7 @@
         {
           "id": "tags",
           "title": "Tags",
-          "content": "- angular\r\n- tailwindcss\r\n- portfolio\r\n- web-development"
+          "content": "- angular\n- tailwindcss\n- portfolio\n- web-development"
         },
         {
           "id": "how-it-works",
@@ -24,14 +28,15 @@
           "content": "Updating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information."
         }
       ],
-      "rawMarkdown": "# Mochafolio\r\n\r\n> My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\r\n\r\n## Tags\r\n\r\n- angular\r\n- tailwindcss\r\n- portfolio\r\n- web-development\r\n\r\n## Problem\r\n\r\n## Solution\r\n\r\n## How it works\r\n\r\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\r\n\r\n## Comments"
+      "rawMarkdown": "---\ntitle: Mochafolio\nsummary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\ntags: [angular, tailwindcss, portfolio, web-development]\nfeatured: true\n---\n\n# Mochafolio\n\n> My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\n\n## Tags\n\n- angular\n- tailwindcss\n- portfolio\n- web-development\n\n## Problem\n\n## Solution\n\n## How it works\n\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\n\n## Comments"
     },
     {
       "id": "money-minder-back",
-      "title": "Money Minder Back",
+      "title": "money-minder-back",
       "summary": "Project: Money Minder Back",
       "tags": [],
       "featured": false,
+      "lastCommitDate": "2026-11-07T18:22:23Z",
       "previewImages": [
         "/preview/1.svg"
       ],
@@ -40,5 +45,5 @@
       "rawMarkdown": "## Problem and description of the solution\n\n## General architecture and technologies\n\n## How it works\n\n## How to run it\n"
     }
   ],
-  "generatedAt": "2026-11-10T01:54:35.992Z"
+  "generatedAt": "2026-11-10T02:38:12.111Z"
 }

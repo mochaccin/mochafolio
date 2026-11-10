@@ -63,7 +63,7 @@ import { isPlatformBrowser } from '@angular/common';
             <a href="https://www.linkedin.com/in/npelizari/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
               <span class="iconify text-base" data-icon="mdi:linkedin" aria-hidden="true"></span>
             </a>
-            <a href="mailto:nicolas.pelizari@gmail.com" class="social-link" aria-label="Email">
+            <a href="mailto:nicolas.pelizari@gmail.com?subject=Contact%20from%20Mochafolio" class="social-link" aria-label="Email">
               <span class="material-icons text-base" aria-hidden="true">mail</span>
             </a>
           </div>

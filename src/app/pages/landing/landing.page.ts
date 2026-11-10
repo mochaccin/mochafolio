@@ -1,7 +1,7 @@
 import { Component, signal, computed, inject, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PortfolioService, Project } from '../../core';
+import { PortfolioService, Project, SummaryRendererService } from '../../core';
 
 @Component({
   imports: [CommonModule, RouterLink],
@@ -15,7 +15,7 @@ import { PortfolioService, Project } from '../../core';
           <h1 id="welcome-heading" class="welcome-title text-4xl sm:text-5xl lg:text-5xl font-bold text-rp-text m-0 leading-tight">
             {{ greeting() }}
           </h1>
-          <h1 id="welcome-heading" class="welcome-title text-4xl sm:text-5xl lg:text-5xl font-bold text-rp-text m-0 leading-tight">
+          <h1 id="welcome-heading" class="welcome-name text-4xl sm:text-5xl lg:text-5xl font-bold text-rp-gold m-0 leading-tight">
             {{ name() }}
           </h1>
         </div>
@@ -74,7 +74,7 @@ import { PortfolioService, Project } from '../../core';
                 <div class="project-content p-4 sm:p-6 sm:pt-0 flex flex-col justify-between min-h-[160px]">
                   <div>
                     <h3 class="project-title text-lg sm:text-xl font-bold text-rp-text mb-2 group-hover:text-rp-gold transition-colors">{{ project.title }}</h3>
-                    <p class="project-summary text-sm sm:text-base text-rp-subtle leading-relaxed mb-3 line-clamp-2">{{ project.summary }}</p>
+                    <p class="project-summary text-sm sm:text-base text-rp-subtle leading-relaxed mb-3 line-clamp-2" [innerHTML]="summaryRenderer.render(project.summary)"></p>
                   </div>
                   <div class="project-tags-row flex items-center gap-2 pt-2" role="list" aria-label="Technologies">
                     <span class="material-icons text-base text-rp-pine flex-shrink-0" aria-hidden="true">label_outline</span>
@@ -131,6 +131,7 @@ import { PortfolioService, Project } from '../../core';
 })
 export class LandingPage implements OnInit {
   private readonly portfolio = inject(PortfolioService);
+  protected readonly summaryRenderer = inject(SummaryRendererService);
 
   // Personal info
   readonly name = signal('Nicolás Pelizari');
@@ -138,7 +139,7 @@ export class LandingPage implements OnInit {
   readonly description = signal("I'm a Software Engineer currently located in Temuco, Chile. I've developed production level web and mobile applications, cloud-based systems, and automation solutions for clients across different industries. Learning new things and making a tangible difference is what keeps me building.");
   readonly githubUrl = signal('https://github.com/mochaccin');
   readonly linkedinUrl = signal('https://www.linkedin.com/in/npelizari/');
-  readonly emailUrl = signal('mailto:nicolas.pelizari@gmail.com');
+  readonly emailUrl = signal('mailto:nicolas.pelizari@gmail.com?subject=Contact%20from%20Mochafolio');
 
   // Featured projects from real data
   readonly featuredProjects = signal<Project[]>([]);

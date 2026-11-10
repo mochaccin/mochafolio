@@ -4,7 +4,7 @@ import { RouterLink, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import { PortfolioService, Project } from '../../../core';
+import { PortfolioService, Project, SummaryRendererService } from '../../../core';
 
 declare global {
   interface Window {
@@ -57,7 +57,7 @@ declare global {
             <div class="project-meta flex flex-col sm:flex-row sm:items-center gap-4 animate-fade animate-fade-delay-1">
               <div class="project-date flex items-center gap-3 text-rp-subtle text-sm font-medium flex-wrap">
                 <span class="material-icons text-base text-rp-gold flex-shrink-0" aria-hidden="true">calendar_month</span>
-                <time [attr.datetime]="formatDateForTime(proj.date)">{{ proj.date }}</time>
+                <time [attr.datetime]="proj.lastCommitDate || formatDateForTime(proj.date)">{{ formatProjectDate(proj) }}</time>
 
                 @if (proj.githubUrl || proj.demoUrl) {
                   <span class="meta-separator text-rp-muted" aria-hidden="true">|</span>
@@ -91,18 +91,18 @@ declare global {
             </div>
 
             <!-- Purple separator after tags -->
-            <hr class="project-separator border-0 h-px bg-rp-gold my-6 animate-fade animate-fade-delay-2" aria-hidden="true" />
+            <hr class="project-separator border-0 h-px bg-rp-gold my-6 mb-2 animate-fade animate-fade-delay-2" aria-hidden="true" />
           </header>
 
           <!-- Summary -->
           @if (proj.summary) {
             <p class="project-summary text-xl sm:text-2xl text-rp-subtle leading-relaxed max-w-[75ch] border-l-2 border-rp-gold pl-4 mb-10 animate-entry animate-entry-delay-3">
-              {{ proj.summary }}
+              <span [innerHTML]="summaryRenderer.render(proj.summary)"></span>
             </p>
           }
 
           <!-- Deep Dive Sections - Each as a proper prose article -->
-          @for (section of proj.sections; track section.id; let i = $index) {
+          @for (section of detailSections(proj.sections); track section.id; let i = $index) {
             <section class="deep-dive-section mb-12 animate-entry" [class.animate-entry-delay-3]="i === 0" [class.animate-entry-delay-4]="i === 1" [class.animate-entry-delay-5]="i >= 2">
               <header class="deep-dive-header mb-6">
                 <h2 class="deep-dive-title text-2xl font-bold text-rp-text flex items-center gap-3">
@@ -134,6 +134,7 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
   private route = inject(ActivatedRoute);
   private portfolio = inject(PortfolioService);
   private sanitizer = inject(DomSanitizer);
+  protected readonly summaryRenderer = inject(SummaryRendererService);
 
   @ViewChild('diagramContainer') diagramContainer!: ElementRef<HTMLDivElement>;
 
@@ -256,6 +257,25 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
       return `${year}-${month}-${day}`;
     }
     return dateStr;
+  }
+
+  formatProjectDate(project: Project): string {
+    if (project.lastCommitDate) {
+      const date = new Date(project.lastCommitDate);
+      if (!Number.isNaN(date.getTime())) {
+        return new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        }).format(date);
+      }
+    }
+
+    return project.date || 'Date unavailable';
+  }
+
+  detailSections(sections: Project['sections']): Project['sections'] {
+    return sections.filter(section => section.id !== 'tags');
   }
 
   onImageError(event: Event): void {

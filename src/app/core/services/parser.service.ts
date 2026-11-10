@@ -27,12 +27,13 @@ export class ParserService {
     const fm = parsed.frontmatter;
     return {
       id: repoName,
-      title: fm.title,
+      title: repoName,
       summary: fm.summary,
       tags: fm.tags,
       featured: fm.featured ?? false,
       previewImages: fm.previewImages ?? [`preview/1.png`],
       date: fm.date,
+      lastCommitDate: fm.lastCommitDate,
       githubUrl: fm.githubUrl ?? `https://github.com/mochaccin/${repoName}`,
       demoUrl: fm.demoUrl,
       sections: parsed.sections,
