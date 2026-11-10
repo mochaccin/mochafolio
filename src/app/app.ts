@@ -20,7 +20,7 @@ import { isPlatformBrowser } from '@angular/common';
       >
         <nav class="terminal-nav flex items-center justify-between flex-shrink-0 px-3 sm:px-4 h-full" aria-label="Terminal navigation">
           <div class="prompt flex items-center gap-1 text-lg font-medium text-rp-text whitespace-nowrap">
-            <span class="prompt-user text-rp-pine font-medium">nico@mochafolio</span>
+            <a routerLink="/" class="prompt-user text-rp-pine font-medium no-underline hover:text-rp-gold transition-colors" aria-label="Home">nico@mochafolio</a>
             <span class="prompt-separator text-rp-muted"></span>
             <span class="prompt-path flex items-center gap-1">
               <a routerLink="/" class="path-root text-rp-gold font-medium text-base decoration-none hover:text-rp-gold transition-colors" aria-label="Home">~</a>
