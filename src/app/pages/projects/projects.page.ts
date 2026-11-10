@@ -75,7 +75,11 @@ export class ProjectsPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const allProjects = await this.portfolio.loadAllProjects();
-    this.projects.set(allProjects);
+    this.projects.set([...allProjects].sort((a, b) => {
+      if (a.id === 'mochafolio') return 1;
+      if (b.id === 'mochafolio') return -1;
+      return 0;
+    }));
   }
 
   // Tag pastel classes - different colors to make them pop

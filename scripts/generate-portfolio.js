@@ -303,6 +303,12 @@ async function main() {
     }
   }
 
+  projects.sort((a, b) => {
+    if (a.id === 'mochafolio') return 1;
+    if (b.id === 'mochafolio') return -1;
+    return 0;
+  });
+
   // Ensure output directory exists
   const outputDir = path.dirname(OUTPUT_PATH);
   if (!fs.existsSync(outputDir)) {
