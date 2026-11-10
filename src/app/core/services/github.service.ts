@@ -7,6 +7,7 @@ export interface GitHubFileContent {
   type: 'file' | 'dir';
   name: string;
   path: string;
+  download_url?: string;
   content?: string;
   encoding?: string;
   size: number;
@@ -56,7 +57,8 @@ export class GitHubService {
           const nb = parseInt(b.name.match(/\d+/)?.[0] || '0', 10);
           return na - nb;
         })
-        .map(f => `https://raw.githubusercontent.com/${this.owner}/${repo}/main/preview/${f.name}`);
+        .map(f => f.download_url)
+        .filter((url): url is string => Boolean(url));
     } catch {
       return [];
     }

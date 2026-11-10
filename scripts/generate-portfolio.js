@@ -234,7 +234,8 @@ async function main() {
               const nb = parseInt(b.name.match(/\d+/)?.[0] || '0', 10);
               return na - nb;
             })
-            .map(f => `https://raw.githubusercontent.com/${OWNER}/${repo.name}/main/preview/${f.name}`);
+            .map(f => f.download_url)
+            .filter(Boolean);
         }
       } catch (e) {
         // preview folder doesn't exist
@@ -259,6 +260,9 @@ async function main() {
 
       if (previewImages.length === 0) {
         throw new Error(`Missing preview/1.png, preview/1.jpg, preview/1.jpeg, or preview/1.svg (at least one preview image required)`);
+      }
+      if (!previewImages.some(image => /\/1\.(png|jpg|jpeg|svg)$/i.test(image))) {
+        throw new Error(`Missing preview/1.png, preview/1.jpg, preview/1.jpeg, or preview/1.svg`);
       }
 
       // Parse markdown
