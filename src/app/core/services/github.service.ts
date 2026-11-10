@@ -50,7 +50,7 @@ export class GitHubService {
     try {
       const files = await firstValueFrom(this.http.get<GitHubFileContent[]>(url, { headers: this.headers() }));
       return files
-        .filter(f => f.type === 'file' && /\.(png|jpg|jpeg|webp)$/i.test(f.name))
+        .filter(f => f.type === 'file' && /\.(png|jpg|jpeg|svg)$/i.test(f.name))
         .sort((a, b) => {
           const na = parseInt(a.name.match(/\d+/)?.[0] || '0', 10);
           const nb = parseInt(b.name.match(/\d+/)?.[0] || '0', 10);

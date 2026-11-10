@@ -228,7 +228,7 @@ async function main() {
         const previewRes = await request(`${BASE_URL}/repos/${OWNER}/${repo.name}/contents/preview`);
         if (Array.isArray(previewRes)) {
           previewImages = previewRes
-            .filter(f => f.type === 'file' && /\.(png|jpg|jpeg|webp|svg)$/i.test(f.name))
+            .filter(f => f.type === 'file' && /\.(png|jpg|jpeg|svg)$/i.test(f.name))
             .sort((a, b) => {
               const na = parseInt(a.name.match(/\d+/)?.[0] || '0', 10);
               const nb = parseInt(b.name.match(/\d+/)?.[0] || '0', 10);
@@ -245,7 +245,7 @@ async function main() {
         const localPreviewDir = path.join(__dirname, '../public/preview');
         if (fs.existsSync(localPreviewDir)) {
           const localFiles = fs.readdirSync(localPreviewDir)
-            .filter(f => /\.(png|jpg|jpeg|webp|svg)$/i.test(f))
+            .filter(f => /\.(png|jpg|jpeg|svg)$/i.test(f))
             .sort((a, b) => {
               const na = parseInt(a.match(/\d+/)?.[0] || '0', 10);
               const nb = parseInt(b.match(/\d+/)?.[0] || '0', 10);
@@ -258,7 +258,7 @@ async function main() {
       }
 
       if (previewImages.length === 0) {
-        throw new Error(`Missing preview/1.png (at least one preview image required)`);
+        throw new Error(`Missing preview/1.png, preview/1.jpg, preview/1.jpeg, or preview/1.svg (at least one preview image required)`);
       }
 
       // Parse markdown
