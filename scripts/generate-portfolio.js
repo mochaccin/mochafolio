@@ -166,11 +166,12 @@ function extractSections(content) {
 
     if (lastHeading) {
       const sectionContent = content.slice(lastHeading.index, headingIndex).trim();
-      if (sectionContent) {
+      const visibleContent = sectionContent.replace(/<!--[\s\S]*?-->/g, '').trim();
+      if (visibleContent) {
         sections.push({
           id: lastHeading.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
           title: sectionMap[lastHeading.title.toLowerCase()] || lastHeading.title,
-          content: sectionContent
+          content: visibleContent
         });
       }
     }
@@ -180,11 +181,12 @@ function extractSections(content) {
 
   if (lastHeading) {
     const sectionContent = content.slice(lastHeading.index).trim();
-    if (sectionContent) {
+    const visibleContent = sectionContent.replace(/<!--[\s\S]*?-->/g, '').trim();
+    if (visibleContent) {
       sections.push({
         id: lastHeading.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
         title: sectionMap[lastHeading.title.toLowerCase()] || lastHeading.title,
-        content: sectionContent
+        content: visibleContent
       });
     }
   }

@@ -187,13 +187,14 @@ export class ParserService {
 
       if (lastHeading) {
         const sectionContent = content.slice(lastHeading.index, headingIndex).trim();
-        if (sectionContent) {
-          sections.push({
-            id: this.slugify(lastHeading.title),
-            title: this.normalizeSectionTitle(lastHeading.title),
-            content: sectionContent,
-          });
-        }
+          const visibleContent = this.removeHtmlComments(sectionContent);
+          if (visibleContent) {
+            sections.push({
+              id: this.slugify(lastHeading.title),
+              title: this.normalizeSectionTitle(lastHeading.title),
+              content: visibleContent,
+            });
+          }
       }
 
       lastHeading = { title: headingTitle, index: headingIndex + match[0].length };
@@ -201,16 +202,21 @@ export class ParserService {
 
     if (lastHeading) {
       const sectionContent = content.slice(lastHeading.index).trim();
-      if (sectionContent) {
+      const visibleContent = this.removeHtmlComments(sectionContent);
+      if (visibleContent) {
         sections.push({
           id: this.slugify(lastHeading.title),
           title: this.normalizeSectionTitle(lastHeading.title),
-          content: sectionContent,
+          content: visibleContent,
         });
       }
     }
 
     return sections.filter(s => s.content.length > 0);
+  }
+
+  private removeHtmlComments(content: string): string {
+    return content.replace(/<!--[\s\S]*?-->/g, '').trim();
   }
 
   private normalizeSectionTitle(title: string): string {

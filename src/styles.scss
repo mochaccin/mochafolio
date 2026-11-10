@@ -50,8 +50,9 @@
 
 /* Animations */
 @keyframes cursorFade {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%, 30% { opacity: 1; }
+  50% { opacity: 0; }
+  70%, 100% { opacity: 1; }
 }
 
 @keyframes pulse {
@@ -276,7 +277,7 @@ footer.footer {
 /* Header cursor and footer status animations are defined here so they are
    available even when Tailwind's custom animation utilities are purged. */
 .cursor-block {
-  animation: cursorFade 1s ease-in-out infinite;
+  animation: cursorFade 2.4s ease-in-out infinite;
 }
 
 .status-indicator {

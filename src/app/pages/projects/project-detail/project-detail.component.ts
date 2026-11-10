@@ -36,49 +36,53 @@ declare global {
         <!-- Preview Carousel -->
         @if (proj.previewImages.length > 0) {
           <div
-            class="project-hero mb-8 relative aspect-video rounded-lg p-6 overflow-hidden bg-rp-surface animate-entry animate-entry-delay-1"
+            class="project-hero mb-8 flex flex-col gap-5 rounded-lg bg-rp-surface p-6 animate-entry animate-entry-delay-1"
             role="region"
             [attr.aria-label]="proj.title + ' previews'"
             aria-roledescription="carousel"
           >
-            <img
-              [src]="proj.previewImages[carouselIndex()]"
-              [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
-              loading="eager"
-              class="project-hero-img w-full h-full object-contain rounded-md cursor-zoom-in"
-              role="button"
-              tabindex="0"
-              (click)="openFullscreen()"
-              (keydown.enter)="openFullscreen()"
-              (keydown.space)="openFullscreen(); $event.preventDefault()"
-              [attr.aria-label]="'View ' + proj.title + ' preview fullscreen'"
-              (error)="onImageError($event)"
-            />
+            <div class="relative aspect-video overflow-hidden rounded-md">
+              <img
+                [src]="proj.previewImages[carouselIndex()]"
+                [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
+                loading="eager"
+                class="project-hero-img h-full w-full object-contain cursor-zoom-in"
+                role="button"
+                tabindex="0"
+                (click)="openFullscreen()"
+                (keydown.enter)="openFullscreen()"
+                (keydown.space)="openFullscreen(); $event.preventDefault()"
+                [attr.aria-label]="'View ' + proj.title + ' preview fullscreen'"
+                (error)="onImageError($event)"
+              />
+
+              @if (proj.previewImages.length > 1) {
+                <button
+                  type="button"
+                  class="absolute left-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+                  (click)="previousPreview(proj.previewImages.length)"
+                  aria-label="Previous preview"
+                >
+                  <span class="material-icons text-xl" aria-hidden="true">chevron_left</span>
+                </button>
+                <button
+                  type="button"
+                  class="absolute right-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+                  (click)="nextPreview(proj.previewImages.length)"
+                  aria-label="Next preview"
+                >
+                  <span class="material-icons text-xl" aria-hidden="true">chevron_right</span>
+                </button>
+              }
+            </div>
 
             @if (proj.previewImages.length > 1) {
-              <button
-                type="button"
-                class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
-                (click)="previousPreview(proj.previewImages.length)"
-                aria-label="Previous preview"
-              >
-                <span class="material-icons text-xl" aria-hidden="true">chevron_left</span>
-              </button>
-              <button
-                type="button"
-                class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-rp-base/90 text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
-                (click)="nextPreview(proj.previewImages.length)"
-                aria-label="Next preview"
-              >
-                <span class="material-icons text-xl" aria-hidden="true">chevron_right</span>
-              </button>
-
-              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2" aria-label="Preview indicators">
+              <div class="flex min-h-3 items-center justify-center gap-2" aria-label="Preview indicators">
                 @for (image of proj.previewImages; track image; let i = $index) {
                   <button
                     type="button"
-                    class="w-2.5 h-2.5 rounded-full bg-rp-muted transition-colors hover:bg-rp-gold"
-                    [class.bg-rp-gold]="carouselIndex() === i"
+                    class="w-2.5 h-2.5 rounded-full transition-colors"
+                    [style.background-color]="carouselIndex() === i ? 'var(--color-rp-gold)' : 'var(--color-rp-muted)'"
                     (click)="goToPreview(i)"
                     [attr.aria-label]="'Show preview ' + (i + 1)"
                     [attr.aria-current]="carouselIndex() === i ? 'true' : 'false'"
@@ -176,14 +180,47 @@ declare global {
           class="fixed inset-0 z-50 flex items-center justify-center bg-rp-base/95 p-4 sm:p-8"
           role="dialog"
           aria-modal="true"
-          aria-label="Fullscreen project preview"
+          [attr.aria-label]="proj.title + ' fullscreen previews'"
           (click)="closeFullscreenOnBackdrop($event)"
         >
-          <img
-            [src]="proj.previewImages[carouselIndex()]"
-            [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
-            class="max-h-full max-w-full object-contain"
-          />
+          <div class="flex max-h-full max-w-full flex-col items-center gap-6">
+            <img
+              [src]="proj.previewImages[carouselIndex()]"
+              [alt]="proj.title + ' preview ' + (carouselIndex() + 1)"
+              class="max-h-[calc(100vh-8rem)] max-w-full object-contain"
+            />
+          @if (proj.previewImages.length > 1) {
+            <button
+              type="button"
+              class="absolute left-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-rp-surface text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+              (click)="previousPreview(proj.previewImages.length)"
+              aria-label="Previous preview"
+            >
+              <span class="material-icons text-2xl" aria-hidden="true">chevron_left</span>
+            </button>
+            <button
+              type="button"
+              class="absolute right-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-rp-surface text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
+              (click)="nextPreview(proj.previewImages.length)"
+              aria-label="Next preview"
+            >
+              <span class="material-icons text-2xl" aria-hidden="true">chevron_right</span>
+            </button>
+
+            <div class="flex items-center gap-2" aria-label="Preview indicators">
+              @for (image of proj.previewImages; track image; let i = $index) {
+                <button
+                  type="button"
+                  class="h-3 w-3 rounded-full transition-colors"
+                  [style.background-color]="carouselIndex() === i ? 'var(--color-rp-gold)' : 'var(--color-rp-muted)'"
+                  (click)="goToPreview(i)"
+                  [attr.aria-label]="'Show preview ' + (i + 1)"
+                  [attr.aria-current]="carouselIndex() === i ? 'true' : 'false'"
+                ></button>
+              }
+            </div>
+          }
+          </div>
           <button
             type="button"
             class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-rp-surface text-rp-text border border-rp-overlay hover:text-rp-gold hover:border-rp-gold transition-colors"
@@ -377,6 +414,20 @@ export class ProjectDetailComponent implements OnInit, AfterViewInit {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     this.closeFullscreen();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onFullscreenNavigation(event: KeyboardEvent): void {
+    const total = this.project()?.previewImages.length ?? 0;
+    if (!this.isFullscreen() || total < 2) return;
+
+    if (event.key === 'ArrowLeft') {
+      this.previousPreview(total);
+      event.preventDefault();
+    } else if (event.key === 'ArrowRight') {
+      this.nextPreview(total);
+      event.preventDefault();
+    }
   }
 
   onImageError(event: Event): void {
