@@ -14,7 +14,7 @@
       "previewImages": [
         "preview/1.svg"
       ],
-      "lastCommitDate": "2026-11-10T03:55:09Z",
+      "lastCommitDate": "2026-11-10T04:30:46Z",
       "githubUrl": "https://github.com/mochaccin/mochafolio",
       "sections": [
         {
@@ -36,6 +36,51 @@
       "rawMarkdown": "---\ntitle: Mochafolio\nsummary: My up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\ntags: [angular, tailwindcss, portfolio, web-development]\nfeatured: true\n---\n\n# Mochafolio\n\nMy up to date portfolio and the website you are scrolling through right now! it takes heavy inspiration from [Jason Cameron's](https://jasoncameron.dev/) portfolio but in a more simplified style. Developed with ==Angular 22==, it automatically loads my public repositories into projects to display, through a ==PORTFOLIO.md== file present in the projects I want to share.\n\n## Tags\n\n- angular\n- tailwindcss\n- portfolio\n- web-development\n\n## Problem\n\n## Solution\n\n## How it works\n\nUpdating itself weekly, it loads my github projects into the website, through the presence of a PORTFOLIO.md file in the repositories I want to share with the world. Aside from that is nothing more than a standard portfolio with my contact information.\n\n## Comments\n\n<!-- featured:true -->"
     },
     {
+      "id": "tora-backend",
+      "title": "tora-backend",
+      "summary": "Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.",
+      "tags": [
+        "NestJS"
+      ],
+      "featured": false,
+      "previewImages": [
+        "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/1.png",
+        "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/2.png",
+        "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/3.png",
+        "https://raw.githubusercontent.com/mochaccin/tora-backend/main/preview/4.png"
+      ],
+      "lastCommitDate": "2026-11-10T04:23:34Z",
+      "githubUrl": "https://github.com/mochaccin/tora-backend",
+      "sections": [
+        {
+          "id": "tags",
+          "title": "Tags",
+          "content": "- NestJS\n- jwt\n- docker\n- backend\n- bash"
+        },
+        {
+          "id": "problem",
+          "title": "Problem",
+          "content": "Currently there's a big lack for self-regulation tools for kids with neurodivergence, and the ones that are in the market are very primitive, or do not tackle the needs of the kids and their parents."
+        },
+        {
+          "id": "solution",
+          "title": "Solution",
+          "content": "A self-regulation mobile app, with parental control and tracking, and with UX at the top of the priorities, building in collaboration with experts in the topic, and interviewing actual parents of neurodivergence kids."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "content": "React Native mobile App that works in pair with a NestJS REST API, the main focus of the app is making self-regulation easy and accessible for the kids without boring them into not using the app, for that we implemented a point system for completing tasks and using the app, with a customizable mascot that the kids can customize to their liking, and a shop system. We use task lists to help the kids navigate to their day, asking for feedback on how they are feeling throughout the day, and giving this feedback to the parents. Implemented different types of self-regulation tools, like respiration exercises, timers, etc. Included a 4-step panic button, in case of extreme stress, that alerts not only the parent but also the tutor of the kid."
+        },
+        {
+          "id": "comments",
+          "title": "Comments",
+          "content": "> Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.\n\n\n<!-- featured:true -->"
+        }
+      ],
+      "rawMarkdown": "# tora-backend\n\nAuto regulation helper mobile application for neurodivergent kids ages 8 to 12. Built in collaboration with a psychology academic of the Universidad de la Frontera specialized in early age neurodivergence studies. Built with NestJS, and React Native, with a focus in friendly design, and UX at the top of the priorities, making sure it can actually be used by kids with neurodivergence.  \n\n## Tags\n\n- NestJS\n- jwt\n- docker\n- backend\n- bash\n\n## Problem\n\nCurrently there's a big lack for self-regulation tools for kids with neurodivergence, and the ones that are in the market are very primitive, or do not tackle the needs of the kids and their parents.\n\n## Solution\n\nA self-regulation mobile app, with parental control and tracking, and with UX at the top of the priorities, building in collaboration with experts in the topic, and interviewing actual parents of neurodivergence kids.\n\n\n## How it works\n\nReact Native mobile App that works in pair with a NestJS REST API, the main focus of the app is making self-regulation easy and accessible for the kids without boring them into not using the app, for that we implemented a point system for completing tasks and using the app, with a customizable mascot that the kids can customize to their liking, and a shop system. We use task lists to help the kids navigate to their day, asking for feedback on how they are feeling throughout the day, and giving this feedback to the parents. Implemented different types of self-regulation tools, like respiration exercises, timers, etc. Included a 4-step panic button, in case of extreme stress, that alerts not only the parent but also the tutor of the kid. \n\n## Comments\n\n> Even tho it was a new topic that I never worked on the past, it was such a great learning experience, not only to face the challenges of making a neurodivergence friendly app, but also to know the daily struggles of the kids and parents, that normally go unnoticed by the government and the school system.\n\n\n<!-- featured:true -->\n"
+    },
+    {
       "id": "money-minder-back",
       "title": "money-minder-back",
       "summary": "Project: Money Minder Back",
@@ -50,5 +95,5 @@
       "rawMarkdown": "## Problem and description of the solution\n\n## General architecture and technologies\n\n## How it works\n\n## How to run it\n"
     }
   ],
-  "generatedAt": "2026-11-10T03:55:47.666Z"
+  "generatedAt": "2026-11-10T04:31:17.366Z"
 }
